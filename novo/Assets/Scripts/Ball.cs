@@ -5,26 +5,27 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public Vector2 direcao;
-    public int velocidade = 10;
+    public int velocidade = 5;
+    private Vector2 direcao;
 
     // Start is called before the first frame update
     void Start()
     {
         TryGetComponent(out rb);
-        direcao = Random.insideUnitCircle;
+        direcao = Random.insideUnitCircle.normalized;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Bloco"))
+        {
+            Destroy(collision.gameObject);
+        }
         direcao = Vector2.Reflect(direcao, collision.contacts[0].normal);
     }
-    private void Update()
+    void FixedUpdate()
     {
-        rb.velocity = direcao.normalized * velocidade;
+        rb.velocity = direcao * velocidade;
     }
 }
-
-    
-
 
