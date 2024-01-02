@@ -32,8 +32,14 @@ public class BallB : MonoBehaviour
         if (col.gameObject.CompareTag("Tijolo"))
         {
             Destroy(col.gameObject);
+            GameManager.instance.SubtrairTijolo();
         }
-        
+
+        if (col.gameObject.CompareTag("GameOver"))
+        {
+            GameManager.instance.SubtrairVida();
+        }
+
 
         direcao = Vector2.Reflect(direcao, col.contacts[0].normal);
         rb.velocity = direcao.normalized * velocidade;
