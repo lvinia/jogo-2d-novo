@@ -13,7 +13,6 @@ public class BallB : MonoBehaviour
     {
         TryGetComponent(out rb);
         direcao = Vector2.zero;
-        DispararBolinha(0);
     }
 
     public void DispararBolinha(float inputX)
